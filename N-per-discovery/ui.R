@@ -30,10 +30,21 @@ shinyUI(fluidPage(theme = shinytheme("spacelab"),
                   h2(HTML("What research approach leads to more true discoveries per total resources?")),
                   
                   br(),
+                  p(HTML("Instructions: Use presets or change parameters manually to identify research 
+                         approach that maximizes true scientific discovery return on investment.
+                         For detailed explanation and conceptual background, see LeBel, Campbell, & Loving 
+                         (in press, JPSP), Table 3.")),
                   
                   # Sidebar with a slider input for the number of bins
                   fluidRow(
                     column(4,
+                           
+                           selectInput("preset","Presets:", c(
+                             "---"="---",
+                             "1: Status quo (high Type I, low power)"="p1",
+                             "2: Open science (low Type I, high power)"="p2",
+                             "3: Error balance (Type I = Type II = .05)"="p3"
+                           )),
                            
                            h3(HTML("Main variables")),
                            
@@ -43,10 +54,10 @@ shinyUI(fluidPage(theme = shinytheme("spacelab"),
                            p(HTML("Power level of original studies:"), style = "font-style: italic; font-size: 0.85em; color:black"),
                            sliderInput("power", label = NULL, min = 0.06, max = 0.99, value = 0.25, step = 0.01),
                            
+                           h3(HTML("Assumptions")),
+                           
                            p("Base rate of true hypotheses:", style = "font-style: italic; font-size: 0.85em; color:black"),    
                            sliderInput("percTrue", label = NULL, min = 0.01, max = .99, value = .10, step = .01),
-                           
-                           h3(HTML("Assumptions")),
                            
                            p(HTML("Individual researcher subject pool resources (N):"), style = "font-style: italic; font-size: 0.85em; color:black; line-height:30%"),
                            sliderInput("indResources", label = NULL, min = 1, max = 10000, value = 5000, step = 100),
@@ -65,5 +76,5 @@ shinyUI(fluidPage(theme = shinytheme("spacelab"),
                     )			
                   ),
                   
-                  HTML("This app is an extension of Zehetleitner and Felix Schönbrodt's (2016) positive predictive value <a href='http://87.106.45.173:3838/felix/PPV'>app</a>.")
+                  HTML("This app is an extension of Zehetleitner and Felix Schönbrodt's (2016) positive predictive value <a href='http://87.106.45.173:3838/felix/PPV'>app</a>. Source code for this app available <a href='https://github.com/eplebel/shiny-apps/tree/master/N-per-discovery'>here</a>.")
 ))
