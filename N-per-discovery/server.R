@@ -90,18 +90,18 @@ shinyServer(function(input, output, session) {
                                   power.of.reps = input$powerOfReps,
                                   avg.effect.size = input$avgEffectSize)
         plot(c(0,.5), c(0,3), type="n", xlab="Base rate of true hypotheses", 
-             ylab="Resources per discovery (N)", ylim=c(0,.9*max(y1,y2,y3)), xaxs="i", yaxs="i"
+             ylab="Resources per discovery (N)", ylim=c(0,.8*max(y1,y2,y3)), xaxs="i", yaxs="i"
              , main = "Comparing Research Approaches as a Function of Base Rate of True Hypotheses")
         lines(x, y1, col="red", lwd=2)
         lines(x, y2, col="blue", lwd=2)
         lines(x, y3, col="green", lwd=2)
         legend("topright", inset=.05, cex = 1,
-               c("Status quo (high Type I, low power)", "Open science (low Type I, high power)", "Error balance (Type I = Type II = .05)"),
+               c("Status quo (high Type I, low power)", "Open science (low Type I, high power)", "Error equivalence (Type I = Type II = .05)"),
                horiz=FALSE, lty=c(1,1), lwd=c(2,2), col=c("red","blue", "green"))
-        text(.4, .70*max(y1,y2,y3), paste("Researcher resources (N) = ", input$indResources), cex = 1)
-        text(.4, .65*max(y1,y2,y3), paste("Number of reps per positive results = ", input$repsPerPositiveResults), cex = 1)
-        text(.4, .60*max(y1,y2,y3), paste("Power of replication studies = ", input$powerOfReps), cex = 1)
-        text(.4, .55*max(y1,y2,y3), paste("Average social psych effect size = ", input$avgEffectSize), cex = 1)
+        text(.4, .60*max(y1,y2,y3), paste("Researcher resources (N) = ", input$indResources), cex = 1)
+        text(.4, .55*max(y1,y2,y3), paste("Number of reps per positive results = ", input$repsPerPositiveResults), cex = 1)
+        text(.4, .50*max(y1,y2,y3), paste("Power of replication studies = ", input$powerOfReps), cex = 1)
+        text(.4, .45*max(y1,y2,y3), paste("Average social psych effect size = ", input$avgEffectSize), cex = 1)
       }, height=600)
       
     ))
@@ -115,15 +115,30 @@ shinyServer(function(input, output, session) {
     switch(input$preset,
            "p1" = {				
              updateSliderInput(session, inputId = "alpha", value = 0.35)
-             updateSliderInput(session, inputId = "power", value = 0.25)				
+             updateSliderInput(session, inputId = "power", value = 0.25)
+             updateSliderInput(session, inputId = "percTrue", value = 0.1)
+             updateSliderInput(session, inputId = "indResources", value = 5000)
+             updateSliderInput(session, inputId = "repsPerPositiveResults", value = 2)
+             updateSliderInput(session, inputId = "powerOfReps", value = 0.95)
+             updateSliderInput(session, inputId = "avgEffectSize", value = 0.41)
            },
            "p2" = {
              updateSliderInput(session, inputId = "alpha", value = 0.05)
              updateSliderInput(session, inputId = "power", value = 0.80)
+             updateSliderInput(session, inputId = "percTrue", value = 0.1)
+             updateSliderInput(session, inputId = "indResources", value = 5000)
+             updateSliderInput(session, inputId = "repsPerPositiveResults", value = 2)
+             updateSliderInput(session, inputId = "powerOfReps", value = 0.95)
+             updateSliderInput(session, inputId = "avgEffectSize", value = 0.41)
            },
            "p3" = {				
              updateSliderInput(session, inputId = "alpha", value = 0.05)
              updateSliderInput(session, inputId = "power", value = 0.95)
+             updateSliderInput(session, inputId = "percTrue", value = 0.1)
+             updateSliderInput(session, inputId = "indResources", value = 5000)
+             updateSliderInput(session, inputId = "repsPerPositiveResults", value = 2)
+             updateSliderInput(session, inputId = "powerOfReps", value = 0.95)
+             updateSliderInput(session, inputId = "avgEffectSize", value = 0.41)
            }					
     )
     presetselection$sel <- input$preset

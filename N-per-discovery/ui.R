@@ -27,13 +27,14 @@ shinyUI(fluidPage(theme = shinytheme("spacelab"),
                   
                   title = "Maximizing Scientific Discovery Return on Investment",
                   
-                  h2(HTML("What research approach leads to more true discoveries per total resources?")),
+                  h2(HTML("True Scientific Discoveries: What Research Approach is Most Cost-Effective?")),
                   
                   br(),
-                  p(HTML("Instructions: Use presets or change parameters manually to identify research 
-                         approach that maximizes true scientific discovery return on investment.
-                         For detailed explanation and conceptual background, see LeBel, Campbell, & Loving 
-                         (in press, JPSP), Table 3.")),
+                  p(HTML("<b>Instructions</b>: Use presets or change parameter values manually to explore the cost-effectiveness of 
+                          different research approaches to unearth true scientific discoveries.
+                         For detailed explanation and conceptual background, see 
+                        <a href='http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2616384'>LeBel, Campbell, & Loving 
+                         (in press, JPSP)</a>, Table 3. <b>NOTE</b>: Plot only changes when assumption parameters are modified.")),
                   
                   # Sidebar with a slider input for the number of bins
                   fluidRow(
@@ -43,7 +44,7 @@ shinyUI(fluidPage(theme = shinytheme("spacelab"),
                              "---"="---",
                              "1: Status quo (high Type I, low power)"="p1",
                              "2: Open science (low Type I, high power)"="p2",
-                             "3: Error balance (Type I = Type II = .05)"="p3"
+                             "3: Error equivalence (Type I=Type II=.05)"="p3"
                            )),
                            
                            h3(HTML("Main variables")),
@@ -54,10 +55,10 @@ shinyUI(fluidPage(theme = shinytheme("spacelab"),
                            p(HTML("Power level of original studies:"), style = "font-style: italic; font-size: 0.85em; color:black"),
                            sliderInput("power", label = NULL, min = 0.06, max = 0.99, value = 0.25, step = 0.01),
                            
-                           h3(HTML("Assumptions")),
-                           
                            p("Base rate of true hypotheses:", style = "font-style: italic; font-size: 0.85em; color:black"),    
                            sliderInput("percTrue", label = NULL, min = 0.01, max = .99, value = .10, step = .01),
+                           
+                           h3(HTML("Assumptions")),
                            
                            p(HTML("Individual researcher subject pool resources (N):"), style = "font-style: italic; font-size: 0.85em; color:black; line-height:30%"),
                            sliderInput("indResources", label = NULL, min = 1, max = 10000, value = 5000, step = 100),
